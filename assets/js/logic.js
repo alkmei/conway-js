@@ -6,40 +6,26 @@ class Conway {
       [0, 0, 0, 1, 0, 0, 0],
       [0, 0, 0, 1, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
     ];
     this.gridB = JSON.parse(JSON.stringify(this.gridA));
   }
   checkNeighbors(row, col) {
-    let livingNeighbors = 0;
-    if (this.gridA[row - 1][col - 1] == 1) {
-      livingNeighbors++;
-    }
-    if (this.gridA[row - 1][col] == 1) {
-      livingNeighbors++;
-    }
-    if (this.gridA[row - 1][col + 1] == 1) {
-      livingNeighbors++;
-    }
-    if (this.gridA[row][col - 1] == 1) {
-      livingNeighbors++;
-    }
-    if (this.gridA[row][col + 1] == 1) {
-      livingNeighbors++;
-    }
-    if (this.gridA[row + 1][col - 1] == 1) {
-      livingNeighbors++;
-    }
-    if (this.gridA[row + 1][col] == 1) {
-      livingNeighbors++;
-    }
-    if (this.gridA[row + 1][col + 1] == 1) {
-      livingNeighbors++;
-    }
-    return livingNeighbors;
+    return (
+      this.gridA[row - 1][col - 1] +
+      this.gridA[row - 1][col] +
+      this.gridA[row - 1][col + 1] +
+      this.gridA[row][col - 1] +
+      this.gridA[row][col + 1] +
+      this.gridA[row + 1][col - 1] +
+      this.gridA[row + 1][col] +
+      this.gridA[row + 1][col + 1]
+    );
   }
   gameLoop() {
-    for (let row = 1; row < 4; row++) {
-      for (let col = 1; col < 6; col++) {
+    for (let row = 1; row < this.gridA.length - 1; row++) {
+      for (let col = 1; col < this.gridA[0].length - 1; col++) {
         const neighborCount = this.checkNeighbors(row, col);
         if (this.gridA[row][col] == 1) {
           if (neighborCount < 2 || neighborCount > 3) {
@@ -68,5 +54,4 @@ class Conway {
   }
 }
 
-const e = new Conway();
-e.run();
+export { Conway };
