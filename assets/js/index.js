@@ -1,7 +1,7 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 canvas.height = 500;
-canvas.width = 1400;
+canvas.width = 500;
 
 class Conway {
   constructor() {
@@ -21,11 +21,16 @@ class Conway {
         this.gridA[i][j] = 0;
       }
     }
-    this.gridB = this.gridA;
+    this.gridB = JSON.parse(JSON.stringify(this.gridA));
   }
   randomizeGrid() {
     // Randomly populates grid
-    this.gridA = this.gridA.map((x) => x);
+    for (let i = 0; i < this.gridWidth; i++) {
+      this.gridA[i] = [];
+      for (let j = 0; j < this.gridHeight; j++) {
+        this.gridA[i][j] = Math.round(Math.random());
+      }
+    }
   }
   populateGrid() {
     // Populates grid w/ cells
@@ -47,20 +52,63 @@ class Conway {
       }
     }
   }
-  drawGrid() {
-    // Fill canvas with grid
+  checkValidNeighbor(row, col) {
+    // Check whether neihbor is valid
+    try {
+      return this.gridA[row][col];
+    } catch {
+      return 0;
+    }
   }
-  checkNeighbors() {
+  checkNeighbors(row, col) {
     // Returns number of living neighbors
+    return (
+      this.checkValidNeighbor(row - 1, col - 1) +
+      this.checkValidNeighbor(row - 1, col) +
+      this.checkValidNeighbor(row - 1, col + 1) +
+      this.checkValidNeighbor(row, col - 1) +
+      this.checkValidNeighbor(row, col - 1) +
+      this.checkValidNeighbor(row + 1, col - 1) +
+      this.checkValidNeighbor(row + 1, col) +
+      this.checkValidNeighbor(row + 1, col + 1)
+    );
+  }
+  updateCells(row, col) {
+    const neighbors = this.checkNeighbors(row, col);
+    if (this.gridA[row][col] == 1) {
+      if (neighbors < 2 || neighbors > 3) {
+        return 0;
+      } else {
+        return 1;
+      }
+    } else {
+      if (neighbors == 3) {
+        return 1;
+      }
+    }
+  }
+  updateGrid() {
+    for (let i = 0; i < this.gridHeight; i++) {
+      for (let j = 0; j < this.gridWidth; j++) {
+        this.gridB[i][j] = this.updateCells(i, j);
+      }
+    }
+    this.gridA = JSON.parse(JSON.stringify(this.gridB));
   }
   gameLoop() {
-    // One game loop to append to new list
+    this.updateGrid();
   }
   run() {
     this.createGrid();
+    this.randomizeGrid();
     this.populateGrid();
+    window.setInterval(() => {
+      this.gameLoop();
+    }, 300);
   }
 }
 
-const e = new Conway();
-e.run();
+window.onload = () => {
+  const e = new Conway();
+  e.run();
+};
