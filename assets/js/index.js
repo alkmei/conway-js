@@ -97,6 +97,8 @@ class Conway {
   }
   gameLoop() {
     this.updateGrid();
+    this.randomizeGrid();
+    this.populateGrid();
   }
   run() {
     this.createGrid();
