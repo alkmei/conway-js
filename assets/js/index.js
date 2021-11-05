@@ -21,13 +21,31 @@ class Conway {
         this.gridA[i][j] = 0;
       }
     }
-    this.gridB = 
+    this.gridB = this.gridA;
   }
   randomizeGrid() {
     // Randomly populates grid
+    this.gridA = this.gridA.map((x) => x);
   }
   populateGrid() {
-    // Randomly populates grid w/ cells
+    // Populates grid w/ cells
+    for (let i = 0; i < this.gridHeight; i++) {
+      for (let j = 0; j < this.gridWidth; j++) {
+        let color;
+        if (this.gridA[i][j] == 1) {
+          color = this.aliveCell;
+        } else {
+          color = this.deadCell;
+        }
+        ctx.fillStyle = color;
+        ctx.fillRect(
+          j * this.pixelSize,
+          i * this.pixelSize,
+          this.pixelSize,
+          this.pixelSize
+        );
+      }
+    }
   }
   drawGrid() {
     // Fill canvas with grid
@@ -38,5 +56,11 @@ class Conway {
   gameLoop() {
     // One game loop to append to new list
   }
-  run() {}
+  run() {
+    this.createGrid();
+    this.populateGrid();
+  }
 }
+
+const e = new Conway();
+e.run();
