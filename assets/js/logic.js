@@ -11,9 +11,9 @@ export class Conway {
   }
   createGrid() {
     // Create grid thats gridHeight*gridWidth dimension
-    for (let i = 0; i < this.gridWidth + 2; i++) {
+    for (let i = 0; i < this.gridHeight + 2; i++) {
       this.gridA[i] = [];
-      for (let j = 0; j < this.gridHeight + 2; j++) {
+      for (let j = 0; j < this.gridWidth + 2; j++) {
         this.gridA[i][j] = 0;
       }
     }
@@ -21,9 +21,8 @@ export class Conway {
   }
   randomizeGrid() {
     // Randomly populates grid
-    for (let i = 1; i < this.gridWidth - 1; i++) {
-      this.gridA[i] = [];
-      for (let j = 1; j < this.gridHeight - 1; j++) {
+    for (let i = 1; i < this.gridHeight - 1; i++) {
+      for (let j = 1; j < this.gridWidth - 1; j++) {
         this.gridA[i][j] = Math.round(Math.random());
       }
     }
