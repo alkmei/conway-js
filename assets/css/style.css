@@ -1,0 +1,34 @@
+html,
+body,
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+h1 {
+  color: aliceblue;
+  padding: 1rem;
+}
+body {
+  background-image: url("/assets/images/background.gif");
+  font-size: 5rem;
+  text-align: center;
+}
+.conway {
+  border-style: groove;
+}
+.about {
+  font-size: 3rem;
+  color: aliceblue;
+}
+.from {
+  font-size: 2rem;
+  font-style: italic;
+  color: grey;
+}
+.about-paragraph {
+  padding: 1rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
