@@ -1,7 +1,6 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-canvas.height = 500;
-canvas.width = 500;
+canvas.height = canvas.width = 1000;
 
 class Conway {
   constructor() {
@@ -54,6 +53,8 @@ class Conway {
   }
   checkValidNeighbor(row, col) {
     // check whether neighbor is valid
+    // TODO:
+    // Fix sides staying
     try {
       return this.gridA[row][col];
     } catch {
