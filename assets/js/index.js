@@ -53,7 +53,7 @@ class Conway {
     }
   }
   checkValidNeighbor(row, col) {
-    // Check whether neihbor is valid
+    // check whether neighbor is valid
     try {
       return this.gridA[row][col];
     } catch {
@@ -67,7 +67,7 @@ class Conway {
       this.checkValidNeighbor(row - 1, col) +
       this.checkValidNeighbor(row - 1, col + 1) +
       this.checkValidNeighbor(row, col - 1) +
-      this.checkValidNeighbor(row, col - 1) +
+      this.checkValidNeighbor(row, col + 1) +
       this.checkValidNeighbor(row + 1, col - 1) +
       this.checkValidNeighbor(row + 1, col) +
       this.checkValidNeighbor(row + 1, col + 1)
@@ -97,7 +97,6 @@ class Conway {
   }
   gameLoop() {
     this.updateGrid();
-    this.randomizeGrid();
     this.populateGrid();
   }
   run() {
@@ -106,7 +105,7 @@ class Conway {
     this.populateGrid();
     window.setInterval(() => {
       this.gameLoop();
-    }, 300);
+    }, 30);
   }
 }
 
