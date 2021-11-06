@@ -14,9 +14,9 @@ class Conway {
   }
   createGrid() {
     // Create grid thats gridHeight*gridWidth dimension
-    for (let i = 0; i < this.gridWidth; i++) {
+    for (let i = 0; i < this.gridWidth + 2; i++) {
       this.gridA[i] = [];
-      for (let j = 0; j < this.gridHeight; j++) {
+      for (let j = 0; j < this.gridHeight + 2; j++) {
         this.gridA[i][j] = 0;
       }
     }
@@ -24,17 +24,17 @@ class Conway {
   }
   randomizeGrid() {
     // Randomly populates grid
-    for (let i = 0; i < this.gridWidth; i++) {
+    for (let i = 1; i < this.gridWidth - 1; i++) {
       this.gridA[i] = [];
-      for (let j = 0; j < this.gridHeight; j++) {
+      for (let j = 1; j < this.gridHeight - 1; j++) {
         this.gridA[i][j] = Math.round(Math.random());
       }
     }
   }
   populateGrid() {
     // Populates grid w/ cells
-    for (let i = 0; i < this.gridHeight; i++) {
-      for (let j = 0; j < this.gridWidth; j++) {
+    for (let i = 1; i < this.gridHeight - 1; i++) {
+      for (let j = 1; j < this.gridWidth - 1; j++) {
         let color;
         if (this.gridA[i][j] == 1) {
           color = this.aliveCell;
@@ -89,8 +89,8 @@ class Conway {
     }
   }
   updateGrid() {
-    for (let i = 0; i < this.gridHeight; i++) {
-      for (let j = 0; j < this.gridWidth; j++) {
+    for (let i = 1; i < this.gridHeight - 1; i++) {
+      for (let j = 1; j < this.gridWidth - 1; j++) {
         this.gridB[i][j] = this.updateCells(i, j);
       }
     }
