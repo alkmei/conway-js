@@ -23,8 +23,15 @@ export class Conway {
     // Randomly populates grid
     for (let i = 1; i < this.gridHeight - 1; i++) {
       for (let j = 1; j < this.gridWidth - 1; j++) {
-        this.gridA[i][j] = Math.round(Math.random());
+        this.gridA[i][j] = this.randomValue();
       }
+    }
+  }
+  randomValue() {
+    if (Math.random() > 0.6) {
+      return 1;
+    } else {
+      return 0;
     }
   }
   populateGrid() {
