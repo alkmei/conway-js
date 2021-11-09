@@ -55,24 +55,15 @@ export class Conway {
     }
   }
   checkNeighbors(row, col) {
-    // Make this work????
     return (
-      this.gridA[(row - 1) % (this.gridHeight - 1)][
-        (col - 1) % (this.gridWidth - 1)
-      ] +
-      this.gridA[(row - 1) % (this.gridHeight - 1)][col] +
-      this.gridA[(row - 1) % (this.gridHeight - 1)][
-        (col + 1) % (this.gridWidth - 1)
-      ] +
-      this.gridA[row][(col - 1) % (this.gridWidth - 1)] +
-      this.gridA[row][(col + 1) % (this.gridWidth - 1)] +
-      this.gridA[(row + 1) % (this.gridHeight - 1)][
-        (col - 1) % (this.gridWidth - 1)
-      ] +
-      this.gridA[(row + 1) % (this.gridHeight - 1)][col] +
-      this.gridA[(row + 1) % (this.gridHeight - 1)][
-        (col + 1) % (this.gridWidth - 1)
-      ]
+      this.gridA[row - 1][col - 1] +
+      this.gridA[row - 1][col] +
+      this.gridA[row - 1][col + 1] +
+      this.gridA[row][col - 1] +
+      this.gridA[row][col + 1] +
+      this.gridA[row + 1][col - 1] +
+      this.gridA[row + 1][col] +
+      this.gridA[row + 1][col + 1]
     );
   }
   updateCells(row, col) {
