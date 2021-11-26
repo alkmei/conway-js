@@ -1,24 +1,48 @@
 <html lang="en">
-<head>  
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conway East</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+  <body>
     <h1>Conway's Game of Life!!!</h1>
     <canvas id="canvas" class="conway"></canvas>
     <div class="about">
-        <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" class="from" target="_blank">(from wikipedia the free encyclopedia)</a>
-        <p class="about-paragraph">The universe of the Game of Life is an infinite, two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, live or dead, (or populated and unpopulated, respectively). Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:</p>
-        <ol class="about">
-            <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
-            <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
-            <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
-            <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
-        </ol>
+      <a
+        href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+        class="from"
+        target="_blank"
+        >(from wikipedia the free encyclopedia)</a
+      >
+      <p class="about-paragraph">
+        The universe of the Game of Life is an infinite, two-dimensional
+        orthogonal grid of square cells, each of which is in one of two possible
+        states, live or dead, (or populated and unpopulated, respectively).
+        Every cell interacts with its eight neighbours, which are the cells that
+        are horizontally, vertically, or diagonally adjacent. At each step in
+        time, the following transitions occur:
+      </p>
+      <ol class="about">
+        <li>
+          Any live cell with fewer than two live neighbours dies, as if by
+          underpopulation.
+        </li>
+        <li>
+          Any live cell with two or three live neighbours lives on to the next
+          generation.
+        </li>
+        <li>
+          Any live cell with more than three live neighbours dies, as if by
+          overpopulation.
+        </li>
+        <li>
+          Any dead cell with exactly three live neighbours becomes a live cell,
+          as if by reproduction.
+        </li>
+      </ol>
     </div>
-</body>
-<script src="assets/js/index.js" type="module"></script>
+  </body>
+  <script src="assets/js/index.js" type="module"></script>
 </html>

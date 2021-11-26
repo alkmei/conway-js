@@ -11,9 +11,9 @@ export class Conway {
   }
   createGrid() {
     // Create grid thats gridHeight*gridWidth dimension
-    for (let i = 0; i < this.gridHeight + 2; i++) {
+    for (let i = 0; i < this.gridHeight; i++) {
       this.gridA[i] = [];
-      for (let j = 0; j < this.gridWidth + 2; j++) {
+      for (let j = 0; j < this.gridWidth; j++) {
         this.gridA[i][j] = 0;
       }
     }
@@ -21,8 +21,8 @@ export class Conway {
   }
   randomizeGrid() {
     // Randomly populates grid
-    for (let i = 1; i < this.gridHeight - 1; i++) {
-      for (let j = 1; j < this.gridWidth - 1; j++) {
+    for (let i = 0; i < this.gridHeight; i++) {
+      for (let j = 0; j < this.gridWidth; j++) {
         this.gridA[i][j] = this.randomValue();
       }
     }
@@ -36,8 +36,8 @@ export class Conway {
   }
   populateGrid() {
     // Populates grid w/ cells
-    for (let i = 1; i < this.gridHeight - 1; i++) {
-      for (let j = 1; j < this.gridWidth - 1; j++) {
+    for (let i = 0; i < this.gridHeight; i++) {
+      for (let j = 0; j < this.gridWidth; j++) {
         let color;
         if (this.gridA[i][j] == 1) {
           color = this.aliveCell;
@@ -56,14 +56,14 @@ export class Conway {
   }
   checkNeighbors(row, col) {
     return (
-      this.gridA[row - 1][col - 1] +
-      this.gridA[row - 1][col] +
-      this.gridA[row - 1][col + 1] +
-      this.gridA[row][col - 1] +
-      this.gridA[row][col + 1] +
-      this.gridA[row + 1][col - 1] +
-      this.gridA[row + 1][col] +
-      this.gridA[row + 1][col + 1]
+      this.gridA[(row - 1) % this.gridHeight][(col - 1) % this.gridWidth] +
+      this.gridA[(row - 1) % this.gridHeight][col] +
+      this.gridA[(row - 1) % this.gridHeight][(col + 1) % this.gridWidth] +
+      this.gridA[row][(col - 1) % this.gridWidth] +
+      this.gridA[row][(col + 1) % this.gridWidth] +
+      this.gridA[(row + 1) % this.gridHeight][(col - 1) % this.gridWidth] +
+      this.gridA[(row + 1) % this.gridHeight][col] +
+      this.gridA[(row + 1) % this.gridHeight][(col + 1) % this.gridWidth]
     );
   }
   updateCells(row, col) {
@@ -77,12 +77,14 @@ export class Conway {
     } else {
       if (neighbors == 3) {
         return 1;
+      } else {
+        return 0;
       }
     }
   }
   updateGrid() {
-    for (let i = 1; i < this.gridHeight - 1; i++) {
-      for (let j = 1; j < this.gridWidth - 1; j++) {
+    for (let i = 1; i < this.gridHeight; i++) {
+      for (let j = 1; j < this.gridWidth; j++) {
         this.gridB[i][j] = this.updateCells(i, j);
       }
     }
